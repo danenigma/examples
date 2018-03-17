@@ -137,7 +137,7 @@ def evaluate(data_source):
         output, hidden = model(data, hidden)
         output_flat = output.view(-1, ntokens)
         total_loss += len(data) * criterion(output_flat, targets).data
-        hidden = repackage_hidden(hidden)
+        #hidden = repackage_hidden(hidden)
     return total_loss[0] / len(data_source)
 
 
@@ -152,7 +152,7 @@ def train():
         data, targets = get_batch(train_data, i)
         # Starting each batch, we detach the hidden state from how it was previously produced.
         # If we didn't, the model would try backpropagating all the way to start of the dataset.
-        hidden = repackage_hidden(hidden)
+        #hidden = repackage_hidden(hidden)
         model.zero_grad()
         output, hidden = model(data, hidden)
         loss = criterion(output.view(-1, ntokens), targets)
